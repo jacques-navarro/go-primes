@@ -26,3 +26,15 @@ func IsPrime(n int) bool {
 	return true
 
 }
+
+func NextPrime(n int) int {
+
+	for i := n; true; i++ {
+		if IsPrime(i) {
+			return i
+		}
+	}
+
+	return 0
+
+}
