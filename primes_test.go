@@ -47,3 +47,40 @@ func TestIsPrimes(t *testing.T) {
 	}
 
 }
+
+var nextPrimeTestCases = []struct {
+	name string
+	want int
+	n int
+
+}{
+	{"3 is next prime after 3", 3, 3},
+	{"5 is next prime after 4", 5, 4},
+	{"5 is next prime after 5", 5, 5},
+	{"7 is next prime after 6", 7, 6},
+	{"11 is next prime after 8", 11, 8},
+	{"11 is next prime after 9", 11, 9},
+	{"11 is next prime after 10", 11, 10},
+	{"11 is next prime after 11", 11, 11},
+	{"13 is next prime after 12", 13, 12},
+	{"17 is next prime after 14", 17, 14},
+	{"17 is next prime after 15", 17, 15},
+	{"17 is next prime after 16", 17, 16},
+	{"19 is next prime after 18", 19, 18},
+}
+
+func TestNextPrime(t *testing.T) {
+
+	for _, tc := range nextPrimeTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := NextPrime(tc.n)
+
+			want := tc.want
+
+			if got != want {
+				t.Errorf("got %d want %d", got, want)
+			}
+		})
+	}
+
+}
