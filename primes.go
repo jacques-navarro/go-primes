@@ -38,3 +38,17 @@ func NextPrime(n int) int {
 	return 0
 
 }
+
+func PrimesInRange(start int, end int) []int {
+
+	var primes []int
+
+	for i := start; i <= end; i++ {
+		
+		if IsPrime(i) {
+			primes = append(primes, i)
+		}
+	}
+
+	return primes
+}
