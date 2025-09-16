@@ -1,6 +1,9 @@
 package primes
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 var testcases = []struct {
 	name string
@@ -51,8 +54,7 @@ func TestIsPrimes(t *testing.T) {
 var nextPrimeTestCases = []struct {
 	name string
 	want int
-	n int
-
+	n    int
 }{
 	{"3 is next prime after 3", 3, 3},
 	{"5 is next prime after 4", 5, 4},
@@ -78,6 +80,37 @@ func TestNextPrime(t *testing.T) {
 			want := tc.want
 
 			if got != want {
+				t.Errorf("got %d want %d", got, want)
+			}
+		})
+	}
+
+}
+
+var primesInRangeTestCases = []struct {
+	name  string
+	want  []int
+	start int
+	end   int
+}{
+	{"primes in range 10 to 20", []int{11, 13, 17, 19}, 10, 20},
+	{"primes in range 21 to 30", []int{23, 29}, 21, 30},
+	{"primes in range 31 to 40", []int{31, 37}, 31, 40},
+	{"primes in range 41 to 50", []int{41, 43, 47}, 41, 50},
+	{"primes in range 10 to 50", []int{11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}, 10, 50},
+	{"primes in range 20 to 22", []int{}, 20, 22},
+	{"primes in range 38 to 40", []int{}, 38, 40},
+}
+
+func TestPrimesInRange(t *testing.T) {
+
+	for _, tc := range primesInRangeTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := PrimesInRange(tc.start, tc.end)
+
+			want := tc.want
+
+			if !slices.Equal(got, want) {
 				t.Errorf("got %d want %d", got, want)
 			}
 		})
