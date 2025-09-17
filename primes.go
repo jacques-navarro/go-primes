@@ -1,9 +1,15 @@
+// Package primes provides functions for finding
+// prime numbers.
 package primes
 
 import (
 	"math"
 )
 
+// IsPrime reports whether n is a prime number.
+// It implements the [Trial division] method.
+//
+// [Trial division]: https://en.wikipedia.org/wiki/Trial_division
 func IsPrime(n int) bool {
 
 	if n == 2 {
@@ -27,6 +33,8 @@ func IsPrime(n int) bool {
 
 }
 
+// NextPrime returns the next prime number given
+// n. If n is a prime number it is returned.
 func NextPrime(n int) int {
 
 	for i := n; true; i++ {
@@ -39,12 +47,14 @@ func NextPrime(n int) int {
 
 }
 
+// PrimesInRange returns a slice of all prime
+// numbers in a given range from start to end.
 func PrimesInRange(start int, end int) []int {
 
 	var primes []int
 
 	for i := start; i <= end; i++ {
-		
+
 		if IsPrime(i) {
 			primes = append(primes, i)
 		}
