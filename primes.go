@@ -22,7 +22,7 @@ func IsPrime(n int) bool {
 
 	midPoint := int(math.Sqrt(float64(n)))
 
-	for i := 3; i <= midPoint+1; i += 2 {
+	for i := 3; i <= midPoint; i += 2 {
 
 		if n%i == 0 {
 			return false
