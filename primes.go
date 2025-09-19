@@ -62,3 +62,15 @@ func PrimesInRange(start int, end int) []int {
 
 	return primes
 }
+
+func SumOfPrimesInRange(start, end int) int {
+	primes := PrimesInRange(10, 19)
+
+	var sum int
+
+	for _, p := range primes {
+		sum += p
+	}
+
+	return sum
+}
