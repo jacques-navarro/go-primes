@@ -117,3 +117,25 @@ func TestPrimesInRange(t *testing.T) {
 	}
 
 }
+
+var sumOfPrimesInRangeCases = []struct {
+	name  string
+	want  int
+	start int
+	end   int
+}{
+	{"sum of primes in range 10 t0 19", 60, 10, 19},
+	{"sum of primes in range 20 t0 29", 52, 20, 29},
+	{"sum of primes in range 30 t0 39", 68, 30, 39},
+	{"sum of primes in range 40 t0 49", 131, 40, 49},
+	{"sum of primes in range 10 t0 49", 311, 10, 49},
+}
+
+func TestSumOfPrimesInRange(t *testing.T) {
+	got := SumOfPrimesInRange(10, 19)
+	want := 60
+
+	if got != want {
+		t.Errorf("got %d want %d", got, want)
+	}
+}
