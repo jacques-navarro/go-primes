@@ -139,3 +139,34 @@ func TestSumOfPrimesInRange(t *testing.T) {
 		t.Errorf("got %d want %d", got, want)
 	}
 }
+
+var lastPrimeInRangeCases = []struct {
+	name  string
+	want  int
+	start int
+	end   int
+}{
+	{"last prime in range 10 to 19", 19, 10, 19},
+	{"last prime in range 20 to 29", 29, 20, 29},
+	{"last prime in range 30 to 39", 37, 30, 39},
+	{"last prime in range 40 to 49", 47, 40, 49},
+	{"last prime in range 50 to 59", 59, 50, 59},
+	{"last prime in range 10 to 59", 59, 10, 59},
+	{"last prime in range 523 to 541", 541, 523, 541},
+	{"last prime in range 523 to 540", 523, 523, 540},
+}
+
+func TestLastPrimeInRange(t *testing.T) {
+	for _, tc := range lastPrimeInRangeCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := LastPrimeInRange(tc.start, tc.end)
+
+			want := tc.want
+
+			if got != want {
+				t.Errorf("got %d want %d", got, want)
+			}
+		})
+	}
+
+}
