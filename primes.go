@@ -74,3 +74,26 @@ func SumOfPrimesInRange(start, end int) int {
 
 	return sum
 }
+
+func LastPrimeInRange(start int, end int) int {
+	var lastPrime int
+
+	for n := end; n >= start; {
+		if IsPrime(n) {
+			lastPrime = n
+			break
+		}
+
+		if n%2 != 0 {
+			n -= 2
+			continue
+		}
+
+		if n%2 == 0 {
+			n--
+			continue
+		}
+	}
+
+	return lastPrime
+}
