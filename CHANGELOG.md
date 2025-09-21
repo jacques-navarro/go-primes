@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.0] - 2025-09-19
+
+### Added
+- PrimesInRange funcion.
+- SumOfPrimesInRange function.
+- Doc comments to IsPrime, NextPrime, PrimesInRange.
+
+### Change
+- Updated the addition of "1" to midpoint in the IsPrime algorithm.
+
 ## [0.2.0] - 2025-09-15
 
 ### Added
