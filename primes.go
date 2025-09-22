@@ -64,7 +64,7 @@ func PrimesInRange(start int, end int) []int {
 }
 
 func SumOfPrimesInRange(start, end int) int {
-	primes := PrimesInRange(10, 19)
+	primes := PrimesInRange(start, end)
 
 	var sum int
 
