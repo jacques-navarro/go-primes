@@ -132,12 +132,19 @@ var sumOfPrimesInRangeCases = []struct {
 }
 
 func TestSumOfPrimesInRange(t *testing.T) {
-	got := SumOfPrimesInRange(10, 19)
-	want := 60
 
-	if got != want {
-		t.Errorf("got %d want %d", got, want)
+	for _, tc := range sumOfPrimesInRangeCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := SumOfPrimesInRange(tc.start, tc.end)
+
+			want := tc.want
+
+			if got != want {
+				t.Errorf("got %d want %d", got, tc.want)
+			}
+		})
 	}
+
 }
 
 var lastPrimeInRangeCases = []struct {
