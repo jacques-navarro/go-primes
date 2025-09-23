@@ -35,19 +35,19 @@ What is the largest signed 64-bit prime number?
 
 ### Add import path
 
-```
+```go
 import "github.com/jacques-navarro/go-primes"
 ```
 
 ### Add dependency to module
 
-```
+```bash
 go get github.com/jacques-navarro/go-primes
 ```
 
 ### Example code
 
-```
+```go
 package main
 
 import (
