@@ -12,7 +12,7 @@ build: vet
 	go build
 
 run: vet
-	go run .
+	go run ./cmd/main.go
 
 clean:
 	rm primes
