@@ -137,6 +137,7 @@ var primesInRangeTestCases = []struct {
 	{"primes in range 10 to 50", []int{11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}, 10, 50},
 	{"primes in range 20 to 22", []int{}, 20, 22},
 	{"primes in range 38 to 40", []int{}, 38, 40},
+	{"primes in range 524 to 540", []int{}, 524, 540},
 }
 
 func TestPrimesInRange(t *testing.T) {
