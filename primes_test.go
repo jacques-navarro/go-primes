@@ -209,6 +209,9 @@ var sumOfPrimesInRangeCases = []struct {
 	{"sum of primes in range 30 t0 39", 68, 30, 39},
 	{"sum of primes in range 40 t0 49", 131, 40, 49},
 	{"sum of primes in range 10 t0 49", 311, 10, 49},
+	{"sum of primes in range 24 t0 428", 0, 24, 28},
+	{"sum of primes in range 32 t0 36", 0, 32, 36},
+	{"sum of primes in range 524 t0 540", 0, 524, 540},
 }
 
 func TestSumOfPrimesInRange(t *testing.T) {
