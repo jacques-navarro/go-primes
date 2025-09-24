@@ -230,6 +230,39 @@ func TestSumOfPrimesInRange(t *testing.T) {
 
 }
 
+var sumOfPrimesInRangeIsNotCases = []struct {
+	name     string
+	dontWant int
+	start    int
+	end      int
+}{
+	{"sum of primes in range 10 t0 19 is not 0", 0, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 11", 11, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 13", 13, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 17", 17, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 19", 19, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 64", 64, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 24", 24, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 41", 41, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 10", 10, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 145", 145, 10, 19},
+}
+
+func TestSumOfPrimesInRangeIsNot(t *testing.T) {
+	for _, tc := range sumOfPrimesInRangeIsNotCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := SumOfPrimesInRange(tc.start, tc.end)
+
+			dontWant := tc.dontWant
+
+			if got == dontWant {
+				t.Errorf("got %d should not equal %d", got, dontWant)
+			}
+		})
+	}
+
+}
+
 var lastPrimeInRangeCases = []struct {
 	name  string
 	want  int
