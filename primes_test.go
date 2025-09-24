@@ -293,3 +293,36 @@ func TestLastPrimeInRange(t *testing.T) {
 	}
 
 }
+
+var lastPrimeInRangeIsNotTestCases = []struct {
+	name     string
+	dontWant int
+	start    int
+	end      int
+}{
+	{"last prime in range 10 to 19 is not 20", 20, 10, 19},
+	{"last prime in range 10 to 19 is not 18", 18, 10, 19},
+	{"last prime in range 10 to 19 is not 17", 17, 10, 19},
+	{"last prime in range 10 to 19 is not 16", 16, 10, 19},
+	{"last prime in range 10 to 19 is not 15", 15, 10, 19},
+	{"last prime in range 10 to 19 is not 14", 14, 10, 19},
+	{"last prime in range 10 to 19 is not 13", 13, 10, 19},
+	{"last prime in range 10 to 19 is not 12", 12, 10, 19},
+	{"last prime in range 10 to 19 is not 11", 11, 10, 19},
+	{"last prime in range 10 to 19 is not 10", 10, 10, 19},
+}
+
+func TestLastPrimeInRangeIsNot(t *testing.T) {
+	for _, tc := range lastPrimeInRangeIsNotTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := LastPrimeInRange(tc.start, tc.end)
+
+			dontWant := tc.dontWant
+
+			if got == dontWant {
+				t.Errorf("got %d should not equal %d", got, dontWant)
+			}
+		})
+	}
+
+}
