@@ -156,6 +156,48 @@ func TestPrimesInRange(t *testing.T) {
 
 }
 
+var primesInRangeAreNotEqualTestCases = []struct {
+	name     string
+	dontWant []int
+	start    int
+	end      int
+}{
+	{"primes in range 10 t0 19 are not", []int{}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{10, 11, 12, 13, 14, 15, 16, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{10, 11, 13, 17, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{11, 13, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{12, 13, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{13, 14, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{13, 16, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{13, 17, 18, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{11}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{11, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{11, 13, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{11, 17, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{13, 17, 19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{13}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{17}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{19}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 16, 18}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 15, 16, 18}, 10, 19},
+}
+
+func TestPrimesInRangeAreNotEqual(t *testing.T) {
+
+	for _, tc := range primesInRangeAreNotEqualTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := PrimesInRange(tc.start, tc.end)
+
+			dontWant := tc.dontWant
+
+			if slices.Equal(got, dontWant) {
+				t.Errorf("got %v shouldn't equal %v", got, dontWant)
+			}
+		})
+	}
+
+}
+
 var sumOfPrimesInRangeCases = []struct {
 	name  string
 	want  int
