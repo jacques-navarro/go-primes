@@ -3,6 +3,8 @@ package primes
 import (
 	"slices"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 var testcases = []struct {
@@ -81,6 +83,41 @@ func TestNextPrime(t *testing.T) {
 
 			if got != want {
 				t.Errorf("got %d want %d", got, want)
+			}
+		})
+	}
+
+}
+
+var nextPrimeIsNotTestCases = []struct {
+	name     string
+	dontWant int
+	input    int
+}{
+	{"10 is not the next prime after 10", 10, 10},
+	{"12 is not the next prime after 10", 12, 10},
+	{"13 is not the next prime after 10", 13, 10},
+	{"9 is not the next prime after 10", 9, 10},
+	{"12 is not the next prime after 12", 12, 12},
+	{"14 is not the next prime after 12", 14, 12},
+	{"15 is not the next prime after 12", 15, 12},
+	{"16 is not the next prime after 12", 16, 12},
+	{"17 is not the next prime after 12", 17, 12},
+	{"18 is not the next prime after 18", 18, 18},
+	{"20 is not the next prime after 18", 20, 18},
+	{"21 is not the next prime after 18", 21, 18},
+}
+
+func TestNextPrimeIsNot(t *testing.T) {
+	for _, tc := range nextPrimeIsNotTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+
+			got := NextPrime(tc.input)
+
+			dontWant := tc.dontWant
+
+			if diff := cmp.Diff(got, tc.dontWant); diff == "" {
+				t.Errorf("got %d should not equal want %d", got, dontWant)
 			}
 		})
 	}
