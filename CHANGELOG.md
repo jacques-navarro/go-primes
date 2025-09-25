@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0] - 2025-09-22
+
+### Added
+- LastPrimeInRange function
+
 ## [0.3.0] - 2025-09-19
 
 ### Added
