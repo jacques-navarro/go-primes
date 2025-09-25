@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1] - 2025-09-25
+
+### Fixed
+- Remove hardcoded values from call to PrimesInRange
+- Use all testcases and run subtests in TestSumOfPrimesInRange
+
 ## [0.4.0] - 2025-09-22
 
 ### Added
@@ -26,4 +32,3 @@
 ### Added
 
 - IsPrime function.
-
