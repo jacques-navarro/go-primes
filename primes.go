@@ -63,6 +63,8 @@ func PrimesInRange(start int, end int) []int {
 	return primes
 }
 
+// SumOfPrimesInRange returns the sum of all prime numbers
+// between a given range from start to end.
 func SumOfPrimesInRange(start, end int) int {
 	primes := PrimesInRange(start, end)
 
@@ -75,6 +77,8 @@ func SumOfPrimesInRange(start, end int) int {
 	return sum
 }
 
+// LastPrimeInRange returns the last prime number
+// in a given range from start to end.
 func LastPrimeInRange(start int, end int) int {
 	var lastPrime int
 
