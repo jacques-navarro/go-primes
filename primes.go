@@ -101,3 +101,25 @@ func LastPrimeInRange(start int, end int) int {
 
 	return lastPrime
 }
+
+// PrimeGap returns how many numbers exist between consecutive prime numbers.
+// If the input is a prime number, PrimeGap returns the next prime number minus the input.
+// When the input is 37, a prime number, then the prime gap is the next prime number (41) minus 37, which is 4.
+//
+// In cases where the input is not a prime number, the previous prime number is first found,
+// and then the difference between the next prime number is returned minus the previous one.
+// When the input is 32, a composite number. The previous prime number is first found (31). The next prime number after
+// the inpur (37) is then found and the previous prime number is then subtracted. In this case 37 - 31 = 6.
+func PrimeGap(input int) int {
+
+	if IsPrime(input) {
+		return NextPrime(input+1) - input
+	}
+
+	for i := input - 1; ; i-- {
+		if IsPrime(i) {
+			return NextPrime(input) - i
+		}
+	}
+
+}

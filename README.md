@@ -27,6 +27,7 @@ What is the largest signed 64-bit prime number?
 - Find all primes in a given range
 - Find the sum of all primes in a given range
 - Find the last prime number in a given range
+- Find a prime gap <sup>[[4]](#4)</sup>
 
 ## Prerequisites
 - Requires Go 1.24.3
@@ -88,3 +89,6 @@ https://en.wikipedia.org/wiki/Trial_division
 
 <a id="3">[3]</a>
 https://go.dev/ref/spec#Numeric_types
+
+<a id="4">[4]</a>
+https://en.wikipedia.org/wiki/Prime_gap
