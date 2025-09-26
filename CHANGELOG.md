@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0] - 2025-09-26
+
+### Added
+- PrimeGap function.
+- TestPrimeGap and TestPrimeGap with test cases.
+- Sad path testing for NextPrime, PrimesInRange, sumOfPrimesInRange and LastPrimeInRange functions.
+- Go and bash syntax highlighting to code blocks in README sample code.
+- README file.
+- cmd directory to .gitignore.
+- cmd/main.go for testing purposes.
+
+### Changed
+- Changed make run goal to cmd/main.go
+
 ## [0.4.1] - 2025-09-25
 
 ### Fixed
@@ -10,7 +24,6 @@
 
 ### Added
 - LastPrimeInRange function
-
 ## [0.3.0] - 2025-09-19
 
 ### Added
