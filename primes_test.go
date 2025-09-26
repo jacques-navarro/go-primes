@@ -326,3 +326,39 @@ func TestLastPrimeInRangeIsNot(t *testing.T) {
 	}
 
 }
+
+var primeGapTestCases = []struct {
+	name  string
+	want  int
+	input int
+}{
+	{"prime gap with input 31 should be 6", 6, 31},
+	{"prime gap with input 32 should be 6", 6, 32},
+	{"prime gap with input 33 should be 6", 6, 33},
+	{"prime gap with input 34 should be 6", 6, 34},
+	{"prime gap with input 35 should be 6", 6, 35},
+	{"prime gap with input 36 should be 6", 6, 36},
+	{"prime gap with input 37 should be 4", 4, 37},
+	{"prime gap with input 38 should be 4", 4, 38},
+	{"prime gap with input 39 should be 4", 4, 39},
+	{"prime gap with input 40 should be 4", 4, 40},
+	{"prime gap with input 41 should be 2", 2, 41},
+	{"prime gap with input 42 should be 2", 2, 42},
+	{"prime gap with input 43 should be 4", 4, 43},
+}
+
+func TestPrimeGap(t *testing.T) {
+	for _, tc := range primeGapTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := PrimeGap(tc.input)
+
+			want := tc.want
+
+			if got != want {
+				t.Errorf("got %d want %d", got, want)
+			}
+		})
+	}
+
+}
+
