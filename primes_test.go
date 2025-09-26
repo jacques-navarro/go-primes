@@ -362,3 +362,64 @@ func TestPrimeGap(t *testing.T) {
 
 }
 
+var primeGapShouldNotBeTestCases = []struct {
+	name     string
+	dontWant int
+	input    int
+}{
+	{"prime gap with input 31 should not be 0", 0, 31},
+	{"prime gap with input 31 should not be 1", 1, 31},
+	{"prime gap with input 31 should not be 2", 2, 31},
+	{"prime gap with input 31 should not be 3", 3, 31},
+	{"prime gap with input 31 should not be 4", 4, 31},
+	{"prime gap with input 31 should not be 5", 5, 31},
+	{"prime gap with input 32 should not be 0", 0, 32},
+	{"prime gap with input 32 should not be 1", 1, 32},
+	{"prime gap with input 32 should not be 2", 2, 32},
+	{"prime gap with input 32 should not be 3", 3, 32},
+	{"prime gap with input 32 should not be 4", 4, 32},
+	{"prime gap with input 32 should not be 5", 5, 32},
+	{"prime gap with input 33 should not be 0", 0, 33},
+	{"prime gap with input 33 should not be 1", 1, 33},
+	{"prime gap with input 33 should not be 2", 2, 33},
+	{"prime gap with input 33 should not be 3", 3, 33},
+	{"prime gap with input 33 should not be 4", 4, 33},
+	{"prime gap with input 33 should not be 5", 5, 33},
+	{"prime gap with input 34 should not be 0", 0, 34},
+	{"prime gap with input 34 should not be 1", 1, 34},
+	{"prime gap with input 34 should not be 2", 2, 34},
+	{"prime gap with input 34 should not be 3", 3, 34},
+	{"prime gap with input 34 should not be 4", 4, 34},
+	{"prime gap with input 34 should not be 5", 5, 34},
+	{"prime gap with input 35 should not be 0", 0, 35},
+	{"prime gap with input 35 should not be 1", 1, 35},
+	{"prime gap with input 35 should not be 2", 2, 35},
+	{"prime gap with input 35 should not be 3", 3, 35},
+	{"prime gap with input 35 should not be 4", 4, 35},
+	{"prime gap with input 35 should not be 5", 5, 35},
+	{"prime gap with input 36 should not be 0", 0, 36},
+	{"prime gap with input 36 should not be 1", 1, 36},
+	{"prime gap with input 36 should not be 2", 2, 36},
+	{"prime gap with input 36 should not be 3", 3, 36},
+	{"prime gap with input 36 should not be 4", 4, 36},
+	{"prime gap with input 36 should not be 5", 5, 36},
+	{"prime gap with input 37 should not be 0", 0, 37},
+	{"prime gap with input 37 should not be 1", 1, 37},
+	{"prime gap with input 37 should not be 2", 2, 37},
+	{"prime gap with input 37 should not be 3", 3, 37},
+}
+
+func TestPrimeGapShouldNotBe(t *testing.T) {
+	for _, tc := range primeGapShouldNotBeTestCases {
+		t.Run(tc.name, func(t *testing.T) {
+			got := PrimeGap(tc.input)
+
+			dontWant := tc.dontWant
+
+			if diff := cmp.Diff(got, dontWant); diff == "" {
+				t.Errorf("got %d should not equal %d", got, dontWant)
+			}
+		})
+	}
+
+}
