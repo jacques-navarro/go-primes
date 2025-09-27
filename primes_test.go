@@ -7,7 +7,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-var testcases = []struct {
+var isPrimeTestCases = []struct {
 	name string
 	want bool
 	n    int
@@ -39,7 +39,7 @@ var testcases = []struct {
 
 func TestIsPrimes(t *testing.T) {
 
-	for _, tc := range testcases {
+	for _, tc := range isPrimeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := IsPrime(tc.n)
 
@@ -198,7 +198,7 @@ func TestPrimesInRangeAreNotEqual(t *testing.T) {
 
 }
 
-var sumOfPrimesInRangeCases = []struct {
+var sumOfPrimesInRangeTestCases = []struct {
 	name  string
 	want  int
 	start int
@@ -216,7 +216,7 @@ var sumOfPrimesInRangeCases = []struct {
 
 func TestSumOfPrimesInRange(t *testing.T) {
 
-	for _, tc := range sumOfPrimesInRangeCases {
+	for _, tc := range sumOfPrimesInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := SumOfPrimesInRange(tc.start, tc.end)
 
@@ -230,7 +230,7 @@ func TestSumOfPrimesInRange(t *testing.T) {
 
 }
 
-var sumOfPrimesInRangeIsNotCases = []struct {
+var sumOfPrimesInRangeIsNotTestCases = []struct {
 	name     string
 	dontWant int
 	start    int
@@ -249,7 +249,7 @@ var sumOfPrimesInRangeIsNotCases = []struct {
 }
 
 func TestSumOfPrimesInRangeIsNot(t *testing.T) {
-	for _, tc := range sumOfPrimesInRangeIsNotCases {
+	for _, tc := range sumOfPrimesInRangeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := SumOfPrimesInRange(tc.start, tc.end)
 
@@ -263,7 +263,7 @@ func TestSumOfPrimesInRangeIsNot(t *testing.T) {
 
 }
 
-var lastPrimeInRangeCases = []struct {
+var lastPrimeInRangeTestCases = []struct {
 	name  string
 	want  int
 	start int
@@ -280,7 +280,7 @@ var lastPrimeInRangeCases = []struct {
 }
 
 func TestLastPrimeInRange(t *testing.T) {
-	for _, tc := range lastPrimeInRangeCases {
+	for _, tc := range lastPrimeInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := LastPrimeInRange(tc.start, tc.end)
 
