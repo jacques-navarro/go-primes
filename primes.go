@@ -3,8 +3,21 @@
 package primes
 
 import (
+	"fmt"
 	"math"
 )
+
+type StartGreaterThanEndError struct {
+	start int
+	end int
+}
+
+// StartGreaterThanEndError is returned when a function that works
+// with a range receives a end argument which is less than or equal
+// to the start argument
+func (e StartGreaterThanEndError) Error() string {
+	return fmt.Sprintf("end %d, must be greater than start %d", e.end, e.start)
+}
 
 // IsPrime reports whether n is a prime number.
 // It implements the [Trial division] method.
