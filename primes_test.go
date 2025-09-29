@@ -129,27 +129,32 @@ var primesInRangeTestCases = []struct {
 	want  []int
 	start int
 	end   int
+	err   error
 }{
-	{"primes in range 10 to 20", []int{11, 13, 17, 19}, 10, 20},
-	{"primes in range 21 to 30", []int{23, 29}, 21, 30},
-	{"primes in range 31 to 40", []int{31, 37}, 31, 40},
-	{"primes in range 41 to 50", []int{41, 43, 47}, 41, 50},
-	{"primes in range 10 to 50", []int{11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}, 10, 50},
-	{"primes in range 20 to 22", []int{}, 20, 22},
-	{"primes in range 38 to 40", []int{}, 38, 40},
-	{"primes in range 524 to 540", []int{}, 524, 540},
+	{"primes in range 10 to 20", []int{11, 13, 17, 19}, 10, 20, nil},
+	{"primes in range 21 to 30", []int{23, 29}, 21, 30, nil},
+	{"primes in range 31 to 40", []int{31, 37}, 31, 40, nil},
+	{"primes in range 41 to 50", []int{41, 43, 47}, 41, 50, nil},
+	{"primes in range 10 to 50", []int{11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}, 10, 50, nil},
+	{"primes in range 20 to 22", []int{}, 20, 22, nil},
+	{"primes in range 38 to 40", []int{}, 38, 40, nil},
+	{"primes in range 524 to 540", []int{}, 524, 540, nil},
 }
 
 func TestPrimesInRange(t *testing.T) {
 
 	for _, tc := range primesInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := PrimesInRange(tc.start, tc.end)
+			got, err := PrimesInRange(tc.start, tc.end)
 
 			want := tc.want
 
 			if !slices.Equal(got, want) {
 				t.Errorf("got %d want %d", got, want)
+			}
+
+			if err != tc.err {
+				t.Errorf("expected %v to be nil", tc.err)
 			}
 		})
 	}
@@ -161,37 +166,42 @@ var primesInRangeAreNotEqualTestCases = []struct {
 	dontWant []int
 	start    int
 	end      int
+	err      error
 }{
-	{"primes in range 10 t0 19 are not", []int{}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{10, 11, 12, 13, 14, 15, 16, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{10, 11, 13, 17, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{11, 13, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{12, 13, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{13, 14, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{13, 16, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{13, 17, 18, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{11}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{11, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{11, 13, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{11, 17, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{13, 17, 19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{13}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{17}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{19}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 16, 18}, 10, 19},
-	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 15, 16, 18}, 10, 19},
+	{"primes in range 10 t0 19 are not", []int{}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{10, 11, 12, 13, 14, 15, 16, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{10, 11, 13, 17, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{11, 13, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{12, 13, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{13, 14, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{13, 16, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{13, 17, 18, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{11}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{11, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{11, 13, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{11, 17, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{13, 17, 19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{13}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{17}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{19}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 16, 18}, 10, 19, nil},
+	{"primes in range 10 t0 19 are not", []int{10, 12, 14, 15, 16, 18}, 10, 19, nil},
 }
 
 func TestPrimesInRangeAreNotEqual(t *testing.T) {
 
 	for _, tc := range primesInRangeAreNotEqualTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := PrimesInRange(tc.start, tc.end)
+			got, err := PrimesInRange(tc.start, tc.end)
 
 			dontWant := tc.dontWant
 
 			if slices.Equal(got, dontWant) {
 				t.Errorf("got %v shouldn't equal %v", got, dontWant)
+			}
+
+			if err != tc.err {
+				t.Errorf("expeced %v to be nil", tc.err)
 			}
 		})
 	}
@@ -203,27 +213,32 @@ var sumOfPrimesInRangeTestCases = []struct {
 	want  int
 	start int
 	end   int
+	err   error
 }{
-	{"sum of primes in range 10 t0 19", 60, 10, 19},
-	{"sum of primes in range 20 t0 29", 52, 20, 29},
-	{"sum of primes in range 30 t0 39", 68, 30, 39},
-	{"sum of primes in range 40 t0 49", 131, 40, 49},
-	{"sum of primes in range 10 t0 49", 311, 10, 49},
-	{"sum of primes in range 24 t0 428", 0, 24, 28},
-	{"sum of primes in range 32 t0 36", 0, 32, 36},
-	{"sum of primes in range 524 t0 540", 0, 524, 540},
+	{"sum of primes in range 10 t0 19", 60, 10, 19, nil},
+	{"sum of primes in range 20 t0 29", 52, 20, 29, nil},
+	{"sum of primes in range 30 t0 39", 68, 30, 39, nil},
+	{"sum of primes in range 40 t0 49", 131, 40, 49, nil},
+	{"sum of primes in range 10 t0 49", 311, 10, 49, nil},
+	{"sum of primes in range 24 t0 428", 0, 24, 28, nil},
+	{"sum of primes in range 32 t0 36", 0, 32, 36, nil},
+	{"sum of primes in range 524 t0 540", 0, 524, 540, nil},
 }
 
 func TestSumOfPrimesInRange(t *testing.T) {
 
 	for _, tc := range sumOfPrimesInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := SumOfPrimesInRange(tc.start, tc.end)
+			got, err := SumOfPrimesInRange(tc.start, tc.end)
 
 			want := tc.want
 
 			if got != want {
 				t.Errorf("got %d want %d", got, tc.want)
+			}
+
+			if err != tc.err {
+				t.Errorf("expected %v to be nil", tc.err)
 			}
 		})
 	}
@@ -235,28 +250,33 @@ var sumOfPrimesInRangeIsNotTestCases = []struct {
 	dontWant int
 	start    int
 	end      int
+	err      error
 }{
-	{"sum of primes in range 10 t0 19 is not 0", 0, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 11", 11, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 13", 13, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 17", 17, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 19", 19, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 64", 64, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 24", 24, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 41", 41, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 10", 10, 10, 19},
-	{"sum of primes in range 10 t0 19 is not 145", 145, 10, 19},
+	{"sum of primes in range 10 t0 19 is not 0", 0, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 11", 11, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 13", 13, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 17", 17, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 19", 19, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 64", 64, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 24", 24, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 41", 41, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 10", 10, 10, 19, nil},
+	{"sum of primes in range 10 t0 19 is not 145", 145, 10, 19, nil},
 }
 
 func TestSumOfPrimesInRangeIsNot(t *testing.T) {
 	for _, tc := range sumOfPrimesInRangeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := SumOfPrimesInRange(tc.start, tc.end)
+			got, err := SumOfPrimesInRange(tc.start, tc.end)
 
 			dontWant := tc.dontWant
 
 			if got == dontWant {
 				t.Errorf("got %d should not equal %d", got, dontWant)
+			}
+
+			if err != tc.err {
+				t.Errorf("expected %v to be nil", tc.err)
 			}
 		})
 	}
@@ -268,26 +288,31 @@ var lastPrimeInRangeTestCases = []struct {
 	want  int
 	start int
 	end   int
+	err   error
 }{
-	{"last prime in range 10 to 19", 19, 10, 19},
-	{"last prime in range 20 to 29", 29, 20, 29},
-	{"last prime in range 30 to 39", 37, 30, 39},
-	{"last prime in range 40 to 49", 47, 40, 49},
-	{"last prime in range 50 to 59", 59, 50, 59},
-	{"last prime in range 10 to 59", 59, 10, 59},
-	{"last prime in range 523 to 541", 541, 523, 541},
-	{"last prime in range 523 to 540", 523, 523, 540},
+	{"last prime in range 10 to 19", 19, 10, 19, nil},
+	{"last prime in range 20 to 29", 29, 20, 29, nil},
+	{"last prime in range 30 to 39", 37, 30, 39, nil},
+	{"last prime in range 40 to 49", 47, 40, 49, nil},
+	{"last prime in range 50 to 59", 59, 50, 59, nil},
+	{"last prime in range 10 to 59", 59, 10, 59, nil},
+	{"last prime in range 523 to 541", 541, 523, 541, nil},
+	{"last prime in range 523 to 540", 523, 523, 540, nil},
 }
 
 func TestLastPrimeInRange(t *testing.T) {
 	for _, tc := range lastPrimeInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := LastPrimeInRange(tc.start, tc.end)
+			got, err := LastPrimeInRange(tc.start, tc.end)
 
 			want := tc.want
 
 			if got != want {
 				t.Errorf("got %d want %d", got, want)
+			}
+
+			if err != tc.err {
+				t.Errorf("expected %v to be nil", tc.err)
 			}
 		})
 	}
@@ -299,28 +324,33 @@ var lastPrimeInRangeIsNotTestCases = []struct {
 	dontWant int
 	start    int
 	end      int
+	err      error
 }{
-	{"last prime in range 10 to 19 is not 20", 20, 10, 19},
-	{"last prime in range 10 to 19 is not 18", 18, 10, 19},
-	{"last prime in range 10 to 19 is not 17", 17, 10, 19},
-	{"last prime in range 10 to 19 is not 16", 16, 10, 19},
-	{"last prime in range 10 to 19 is not 15", 15, 10, 19},
-	{"last prime in range 10 to 19 is not 14", 14, 10, 19},
-	{"last prime in range 10 to 19 is not 13", 13, 10, 19},
-	{"last prime in range 10 to 19 is not 12", 12, 10, 19},
-	{"last prime in range 10 to 19 is not 11", 11, 10, 19},
-	{"last prime in range 10 to 19 is not 10", 10, 10, 19},
+	{"last prime in range 10 to 19 is not 20", 20, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 18", 18, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 17", 17, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 16", 16, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 15", 15, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 14", 14, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 13", 13, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 12", 12, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 11", 11, 10, 19, nil},
+	{"last prime in range 10 to 19 is not 10", 10, 10, 19, nil},
 }
 
 func TestLastPrimeInRangeIsNot(t *testing.T) {
 	for _, tc := range lastPrimeInRangeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := LastPrimeInRange(tc.start, tc.end)
+			got, err := LastPrimeInRange(tc.start, tc.end)
 
 			dontWant := tc.dontWant
 
 			if got == dontWant {
 				t.Errorf("got %d should not equal %d", got, dontWant)
+			}
+
+			if err != tc.err {
+				t.Errorf("expected %v to be nil", tc.err)
 			}
 		})
 	}
