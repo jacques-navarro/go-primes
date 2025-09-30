@@ -9,7 +9,7 @@ import (
 
 type StartGreaterThanEndError struct {
 	start int
-	end int
+	end   int
 }
 
 // StartGreaterThanEndError is returned when a function that works
@@ -60,9 +60,18 @@ func NextPrime(n int) int {
 
 }
 
-// PrimesInRange returns a slice of all prime
-// numbers in a given range from start to end.
-func PrimesInRange(start int, end int) []int {
+// PrimesInRange returns a slice of all prime numbers in a given range
+// from start to end.
+// PrimesInRange will return StartGreaterThanEndError if start is
+// greater or equal to end
+func PrimesInRange(start int, end int) ([]int, error) {
+
+	if start >= end {
+		return nil, StartGreaterThanEndError{
+			start: start,
+			end:   end,
+		}
+	}
 
 	var primes []int
 
@@ -73,13 +82,19 @@ func PrimesInRange(start int, end int) []int {
 		}
 	}
 
-	return primes
+	return primes, nil
 }
 
-// SumOfPrimesInRange returns the sum of all prime numbers
-// between a given range from start to end.
-func SumOfPrimesInRange(start, end int) int {
-	primes := PrimesInRange(start, end)
+// SumOfPrimesInRange returns the sum of all prime numbers between a
+// given range from start to end.
+// SumOfPrimesInRange will return -1 and StartGreaterThanEndError if
+// start is greater or equal to end.
+func SumOfPrimesInRange(start, end int) (int, error) {
+	primes, err := PrimesInRange(start, end)
+
+	if err != nil {
+		return -1, err
+	}
 
 	var sum int
 
@@ -87,12 +102,21 @@ func SumOfPrimesInRange(start, end int) int {
 		sum += p
 	}
 
-	return sum
+	return sum, nil
 }
 
-// LastPrimeInRange returns the last prime number
-// in a given range from start to end.
-func LastPrimeInRange(start int, end int) int {
+// LastPrimeInRange returns the last prime number in a given range
+// from start to end.
+// LastPrimeInRange will return -1 and StartGreaterThanEndError if
+// start is greater or equal to end.
+func LastPrimeInRange(start int, end int) (int, error) {
+	if start >= end {
+		return -1, StartGreaterThanEndError{
+			start: start,
+			end:   end,
+		}
+	}
+
 	var lastPrime int
 
 	for n := end; n >= start; {
@@ -112,7 +136,7 @@ func LastPrimeInRange(start int, end int) int {
 		}
 	}
 
-	return lastPrime
+	return lastPrime, nil
 }
 
 // PrimeGap returns how many numbers exist between consecutive prime numbers.
