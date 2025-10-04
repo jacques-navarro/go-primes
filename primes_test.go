@@ -38,6 +38,7 @@ var isPrimeTestCases = []struct {
 }
 
 func TestIsPrimes(t *testing.T) {
+	t.Parallel()
 
 	for _, tc := range isPrimeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -74,6 +75,7 @@ var nextPrimeTestCases = []struct {
 }
 
 func TestNextPrime(t *testing.T) {
+	t.Parallel()
 
 	for _, tc := range nextPrimeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -109,6 +111,8 @@ var nextPrimeIsNotTestCases = []struct {
 }
 
 func TestNextPrimeIsNot(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range nextPrimeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 
@@ -142,6 +146,7 @@ var primesInRangeTestCases = []struct {
 }
 
 func TestPrimesInRange(t *testing.T) {
+	t.Parallel()
 
 	for _, tc := range primesInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -189,6 +194,7 @@ var primesInRangeAreNotEqualTestCases = []struct {
 }
 
 func TestPrimesInRangeAreNotEqual(t *testing.T) {
+	t.Parallel()
 
 	for _, tc := range primesInRangeAreNotEqualTestCases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -226,6 +232,7 @@ var sumOfPrimesInRangeTestCases = []struct {
 }
 
 func TestSumOfPrimesInRange(t *testing.T) {
+	t.Parallel()
 
 	for _, tc := range sumOfPrimesInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -265,6 +272,8 @@ var sumOfPrimesInRangeIsNotTestCases = []struct {
 }
 
 func TestSumOfPrimesInRangeIsNot(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range sumOfPrimesInRangeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got, err := SumOfPrimesInRange(tc.start, tc.end)
@@ -301,6 +310,8 @@ var lastPrimeInRangeTestCases = []struct {
 }
 
 func TestLastPrimeInRange(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range lastPrimeInRangeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got, err := LastPrimeInRange(tc.start, tc.end)
@@ -339,6 +350,8 @@ var lastPrimeInRangeIsNotTestCases = []struct {
 }
 
 func TestLastPrimeInRangeIsNot(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range lastPrimeInRangeIsNotTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got, err := LastPrimeInRange(tc.start, tc.end)
@@ -378,6 +391,8 @@ var primeGapTestCases = []struct {
 }
 
 func TestPrimeGap(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range primeGapTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := PrimeGap(tc.input)
@@ -440,6 +455,8 @@ var primeGapShouldNotBeTestCases = []struct {
 }
 
 func TestPrimeGapShouldNotBe(t *testing.T) {
+	t.Parallel()
+
 	for _, tc := range primeGapShouldNotBeTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := PrimeGap(tc.input)
